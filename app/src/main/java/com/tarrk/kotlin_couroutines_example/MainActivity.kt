@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             L.plant(L.DebugTree())
         }
 
-        five()
+        six()
 
     }
 
@@ -100,22 +100,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Print the first five Fibonacci numbers
-        println(fibonacciSeq.take(8).toList())
+        L.printList("five", fibonacciSeq.take(8).toList())
     }
 
     private fun six() {
         L.i("six")
         val lazySeq = buildSequence {
-            print("START ")
+            L.i("six", "START")
             for (i in 1..5) {
                 yield(i)
-                print("STEP ")
+                L.i("six", "STEP")
             }
-            print("END")
+            L.i("six", "END")
         }
 
         // Print the first three elements of the sequence
-        lazySeq.take(3).forEach { print("$it ") }
+        lazySeq.take(3).forEach { L.i("six", it) }
     }
 
     private fun seven() {
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             yieldAll(1..10)
         }
 
-        lazySeq.forEach { print("$it ") }
+        lazySeq.forEach { L.i("seven", it) }
     }
 
     private fun eight() {
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         val lazySeq = buildSequence {
             for (i in 1..10) yieldIfOdd(i)
         }
-        lazySeq.forEach { print("$it ") }
+        lazySeq.forEach { L.i("eight", it) }
     }
 
     private suspend fun doSomething(foo: String): Deferred<String> {
